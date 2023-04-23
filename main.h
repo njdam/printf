@@ -64,5 +64,6 @@ int append_hexacode(char ascii_code, char buffer[], int x);
 
 /******* Functions for Project Questions *******/
 int _printf(const char *format, ...);
+void flush_buffer(char buffer[], int *buff_len);
 
 #endif /* MAIN_H */
