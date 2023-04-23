@@ -1,7 +1,5 @@
 #include "main.h"
 
-void flush_buffer(char buffer[], int *buff_len);
-
 /**
  * _printf - This function prints the formatted string output to stdout
  * @format: format string
