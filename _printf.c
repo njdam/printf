@@ -1,7 +1,5 @@
 #include "main.h"
 
-void flush_buffer(char buffer[], int *buff_len);
-
 /**
  * _printf - This function prints the formatted string output to stdout
  * @format: format string
@@ -16,7 +14,6 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
-
 	va_start(other_args, format);
 
 	for (i = 0; format[i] != '\0'; i++)
@@ -49,6 +46,7 @@ int _printf(const char *format, ...)
 	}
 	flush_buffer(buffer, &buff_len);
 	va_end(other_args);
+
 	return (char_count);
 }
 
