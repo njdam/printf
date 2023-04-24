@@ -81,6 +81,7 @@ int write_nsign(int is_negative, int x, char buffer[], int flags, int width,
  * @x: is index of a buffer where to start write a number;
  * @buffer: is an array of buffer to handle what to be printed;
  * @flags: number of active flags;
+ * @width: is the resulting width of format specification;
  * @precision: is the resulting precision of format specification;
  * @len: length for a number;
  * @pc: specifies the character which is to be used for padding block;
@@ -88,18 +89,18 @@ int write_nsign(int is_negative, int x, char buffer[], int flags, int width,
  *
  * Return: resulting written number in a buffer.
  */
-int write_num(int x, char buffer[], int flags, int precision, int len, char pc,
-		char ext_c)
+int write_num(int x, char buffer[], int flags, int width, int precision,
+		int len, char pc, char ext_c)
 {
 	int z, p_start = 1;
 
 	if (width == 0 && precision == 0 && x == BUFFER_SIZE - 2 && buffer[x] == '0')
 		return (0); /* it is like printf(".0d", 0), not to print char */
 	if (precision == 0 && x == BUFFER_SIZE - 2 && buffer[x] == '0')
-		buffer[x] == pc = ' '; /* Padding ' ' displayed as width */
+		buffer[x] = pc = ' '; /* Padding ' ' displayed as width */
 	if (precision < len && precision > 0)
 		pc = ' ';
-	while (precision > length)
+	while (precision > len)
 		buffer[--x] = '0', len++;
 	if (ext_c != 0)
 		len++;
@@ -196,8 +197,8 @@ int write_uns(int is_negative, int x, char buffer[], int flags, int width,
  *
  * Return: number of characters written.
  */
-int write_pointer(char buffer[], int x, int len, int width, int flags, char pc,
-		char ext_c, char p_start)
+int write_pointer(char buffer[], int x, int len, int flags, int width, char pc,
+		char ext_c, int p_start)
 {
 	int z;
 

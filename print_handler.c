@@ -18,8 +18,8 @@ int print_handler(const char *format, int *x, va_list arg, char buffer[],
 {
 	fmt_func fmt_type[] = {
 		{'%', print_percent}, {'c', print_char}, {'s', print_string},
-		{'u', print_unsigned}, {'i', print_int}, {'d', print_int},
-		{'b', print_binary}, {'o', print_octal}, {'x', print_haxadecimal},
+		{'u', print_uns}, {'i', print_int}, {'d', print_int},
+		{'b', print_binary}, {'o', print_octal}, {'x', print_haxadec},
 		{'X', print_upper_hexa}, {'p', print_pointer}, {'r', print_rev},
 		{'S', print_non_printable}, {'R', print_rot13string}, {'\0', NULL}
 	};
