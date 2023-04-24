@@ -199,9 +199,44 @@ int write_uns(int is_negative, int x, char buffer[], int flags, int width,
 int write_pointer(char buffer[], int x, int len, int width, int flags, char pc,
 		char ext_c, char p_start)
 {
-	int x;
+	int z;
 
 	if (width > len)
 	{
+		for (z = 3; z < width - len + 3; z++)
+			buffer[z] = pc;
+		buffer[z] = '\0';
+		if (pc == ' ' && (flags & MINUS)) /* extra character to left buffer */
+		{
+			buffer[--x] = 'x';
+			buffer[--x] = '0';
+			if (ext_c)
+				buffer[--x] = ext_c;
+			return (write(1, &buffer[x], len) + write(1, &buffer[3], z - 3));
+		}
+		else if (pc == ' ' && !(flags & MINUS)) /* extra character to left buffer */
+		{
+			buffer[--x] = 'x';
+			buffer[--x] = '0';
+			if (ext_c)
+				buffer[--x] = ext_c;
+			return (write(1, &buffer[3], z - 3) + write(1, &buffer[x], len));
+		}
+		else if (pc == '0' && !(flags & MINUS))
+			/* extra character to left padding (pc) */
+		{
+			if (ext_c)
+				buffer[--p_start] = ext_c;
+			buffer[1] = '0';
+			buffer[2] = 'x';
+			return (write(1, &buffer[p_start], z - p_start) +
+					write(1, &buffer[x], len - (1 - p_start) - 2));
+		}
 	}
+	buffer[--x] = 'x';
+	buffer[--x] = '0';
+	if (ext_c)
+		buffer[--x] = ext_c;
+
+	return (write(1, &buffer[x], BUFFER_SIZE - x - 1));
 }
