@@ -153,6 +153,34 @@ int write_uns(int is_negative, int x, char buffer[], int flags, int width,
 
 	UNUSED(is_negative);
 	UNUSED(size);
+
+	if (x == BUFFER_SIZE - 2 && precision == 0 && buffer[x] == '0')
+		return (0);/* it is like printf(".0d", 0), not to print char */
+
+	if (precision < len && precision > 0)
+		pc = ' ';
+
+	while (precision > len)
+	{
+		buffer[--x] = '0';
+		len++;
+	}
+	if (!(flags & MINUS) && (flags & ZERO))
+		pc = '0';
+
+	if (width > len)
+	{
+		for (z = 0; z < width - len; z++)
+			buffer[z] = pc;
+		buffer[z] = '\0';
+
+		if (flags & MINUS) /* extra character to the left of buffer  pc < buffer */
+			return (write(1, &buffer[x], len) + write(1, &buffer[0], z));
+
+		else /* extra character to the left of padding, pc > buffer */
+			return (write(1, &buffer[0], z) + write(1, &buffer[x], len));
+	}
+	return (write(1, &buffer[x], len));
 }
 
 /**
