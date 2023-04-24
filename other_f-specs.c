@@ -45,7 +45,7 @@ int check_flags(const char *format, int *x)
  */
 int check_width(const char *format, int *x, va_list arg)
 {
-	int z. width = 0;
+	int z, width = 0;
 
 	z = *x + 1;
 	while (format[z] != '\0')

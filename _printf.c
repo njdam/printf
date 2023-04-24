@@ -34,7 +34,7 @@ int _printf(const char *format, ...)
 
 			/* Get the flags, width, precision, and size from the format specifier */
 			flags = check_flags(format, &i);
-			width = check_width(format, &i, arg_list);
+			width = check_width(format, &i, other_args);
 			precision = check_precision(format, &i, other_args);
 			size = check_size(format, &i);
 			i++;

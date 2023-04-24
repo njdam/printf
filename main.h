@@ -35,7 +35,7 @@ fmt_func;
 
 /* Functions for making Printf like */
 int print_handler(const char *format, int *x, va_list, char buffer[],
-		int flags, int width, int width, int precision, int size);
+		int flags, int width, int precision, int size);
 
 /** Functions for making or satisfying Write function **/
 int write_char(char c, char buffer[], int flags, int width,
