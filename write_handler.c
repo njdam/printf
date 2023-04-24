@@ -92,6 +92,45 @@ int write_num(int x, char buffer[], int flags, int precision, int len, char pc,
 		char ext_c)
 {
 	int z, p_start = 1;
+
+	if (width == 0 && precision == 0 && x == BUFFER_SIZE - 2 && buffer[x] == '0')
+		return (0); /* it is like printf(".0d", 0), not to print char */
+	if (precision == 0 && x == BUFFER_SIZE - 2 && buffer[x] == '0')
+		buffer[x] == pc = ' '; /* Padding ' ' displayed as width */
+	if (precision < len && precision > 0)
+		pc = ' ';
+	while (precision > length)
+		buffer[--x] = '0', len++;
+	if (ext_c != 0)
+		len++;
+	if (width > len)
+	{
+		for (z = 1; z < width - len + 1; z++)
+			buffer[z] = pc;
+		buffer[z] = '\0';
+		if (flags & MINUS && pc == ' ') /* assigning extra char to left */
+		{
+			if (ext_c)
+				buffer[--x] = ext_c;
+			return (write(1, &buffer[x], len) + write(1, &buffer[1], z - 1));
+		}
+		else if (pc == ' ' && !(flags & MINUS)) /* extra character to left */
+		{
+			if (ext_c)
+				buffer[--x] = ext_c;
+			return (write(1, &buffer[1], z - 1) + write(1, &buffer[x], len));
+		}
+		else if (pc == '0' && !(flags & MINUS)) /* extra character to left */
+		{
+			if (ext_c)
+				buffer[--p_start] = ext_c;
+			return (write(1, &buffer[1], p_start - 1) + write(1, &buffer[x],
+						len - (1 - p_start)));
+		}
+	}
+	if (ext_c)
+		buffer[--x] = ext_c;
+	return (write(1, &buffer[x], len));
 }
 
 /**
