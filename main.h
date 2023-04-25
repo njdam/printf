@@ -67,8 +67,8 @@ int print_haxadec(va_list arg, char buffer[], int flags, int width,
 		int precision, int size);
 int print_upper_hexa(va_list arg, char buffer[], int flags, int width,
 		int precision, int size);
-int print_uplo_hexa(va_list arg, char buffer[], int flags, int width,
-		int precision, int size);
+int print_uplo_hexa(va_list arg, char ref_to[], char buffer[], int flags,
+		char flags_c, int width, int precision, int size);
 
 /***** Qu.4: write handler functions *****/
 int write_char(char c, char buffer[], int flags, int width,
