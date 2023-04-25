@@ -3,7 +3,7 @@
 /**
  * print_uns - This function prints an unsigned number in decimal format
  *
- * @args: List of arguments
+ * @arg: List of arguments
  * @buffer: Buffer array to handle print
  * @flags: Calculates active flags
  * @width: Is for width specification
@@ -12,11 +12,11 @@
  *
  * Return: Number of characters printed
  */
-int print_uns(va_list args, char buffer[], int flags,
+int print_uns(va_list arg, char buffer[], int flags,
 		int width, int precision, int size)
 {
 	int buffer_index = BUFFER_SIZE - 2;
-	unsigned long int num = va_arg(args, unsigned long int);
+	unsigned long int num = va_arg(arg, unsigned long int);
 
 	num = conv_size_uns(num, size);
 
@@ -129,7 +129,7 @@ int print_upper_hexa(va_list arg, char buffer[],
  * @ref_to: Is an array of values to map the number to
  * @buffer: is the buffer array for handling the way of printing
  * @flags:  Is for calculating active flags
- * @flag_ch: A character that determines whether the letters in the printed
+ * @flags_c: A character that determines whether the letters in the printed
  * number are uppercase or lowercase
  * @width: Is the length of a number
  * @precision: Is for precision specification
@@ -138,7 +138,7 @@ int print_upper_hexa(va_list arg, char buffer[],
  * Return: The length of printed string
  */
 int print_uplo_hexa(va_list arg, char ref_to[], char buffer[],
-		int flags, char flag_ch, int width, int precision, int size)
+		int flags, char flags_c, int width, int precision, int size)
 {
 	int i = BUFFER_SIZE - 2;
 	unsigned long int num = va_arg(arg, unsigned long int);
@@ -160,7 +160,7 @@ int print_uplo_hexa(va_list arg, char ref_to[], char buffer[],
 	/* Add the prefix '0x' or '0X' if the F_HASH flag exist & number !=0 */
 	if (flags & HASH && init_num != 0)
 	{
-		buffer[i--] = flag_ch;
+		buffer[i--] = flags_c;
 		buffer[i--] = '0';
 	}
 	i++;

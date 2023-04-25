@@ -21,7 +21,8 @@ int print_string(va_list arg, char buffer[],
 	UNUSED(width);
 	UNUSED(precision);
 	UNUSED(size);
-	/* check if string is null */
+
+	/* check if string is NULL */
 	if (str == NULL)
 	{
 		str = "(null)";
@@ -86,9 +87,9 @@ int justify_string(char *str, int length, int width, int flags)
 int print_char(va_list arg, char buffer[],
 		int flags, int width, int precision, int size)
 {
-	char c = va_arg(arg, int);
+	char ch = va_arg(arg, int);
 
-	return (write_char(c, buffer, flags, width, precision, size));
+	return (write_char(ch, buffer, flags, width, precision, size));
 }
 /**
  * print_percent - This function is for printing a '%'

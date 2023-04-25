@@ -9,13 +9,13 @@
 int _printf(const char *format, ...)
 {
 	va_list other_args;
-	int char_count = 0, i = 0, buff_len = 0, flags, width, precision, size;
+	int char_count = 0, i = 0, buff_len = 0;
+	int flags, width, precision, size, prints;
 	char buffer[BUFFER_SIZE];
 
 	if (format == NULL)
 		return (-1);
 	va_start(other_args, format);
-
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
@@ -28,8 +28,7 @@ int _printf(const char *format, ...)
 			char_count++;
 		}
 		else
-		{
-			/* If the character is a format specifier, process it */
+		{/* If the character is a format specifier, process it */
 			flush_buffer(buffer, &buff_len);
 
 			/* Get the flags, width, precision, and size from the format specifier */
@@ -38,15 +37,16 @@ int _printf(const char *format, ...)
 			precision = check_precision(format, &i, other_args);
 			size = check_size(format, &i);
 			i++;
-
 			/* Handle the format specifier and get the number of characters printed */
-			char_count += print_handler(format + i, &i, other_args,
-					buffer, flags, width, precision, size);
+			prints = print_handler(format + i, &i, other_args, buffer, flags,
+					width, precision, size);
+			if (prints == -1)
+				return (-1);
+			char_count += prints;
 		}
 	}
 	flush_buffer(buffer, &buff_len);
 	va_end(other_args);
-
 	return (char_count);
 }
 
