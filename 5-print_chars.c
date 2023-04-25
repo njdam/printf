@@ -13,7 +13,7 @@
 int print_string(va_list arg, char buffer[],
 		int flags, int width, int precision, int size)
 {
-	int length = 0, i;
+	int length = 0;
 	char *str = va_arg(arg, char *);
 
 	UNUSED(buffer);
@@ -55,7 +55,7 @@ int justify_string(char *str, int length, int width, int flags)
 {
 	int i, written = 0;
 
-	if (flags & F_MINUS)
+	if (flags & MINUS)
 	{
 		/* left justify */
 		written += write(1, str, length);
@@ -88,7 +88,7 @@ int print_char(va_list arg, char buffer[],
 {
 	char c = va_arg(arg, int);
 
-	return (handle_write_char(c, buffer, flags, width, precision, size));
+	return (write_char(c, buffer, flags, width, precision, size));
 }
 /**
  * print_percent - This function is for printing a '%'

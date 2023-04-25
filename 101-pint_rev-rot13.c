@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * print_reverse - Prints a string in reverse
+ * print_rev - Prints a string in reverse
  * @arg: List of arguments passed to function
  * @buffer: Buffer array used to handle printing
  * @flags: Calculates active flags (not used in this function)
@@ -10,7 +10,7 @@
  * @size: Size specifier (not used too)
  * Return: Number of characters printed
  */
-int print_reverse(va_list arg, char buffer[], int flags,
+int print_rev(va_list arg, char buffer[], int flags,
 		int width, int precision, int size)
 {
 	char *str;
@@ -22,10 +22,11 @@ int print_reverse(va_list arg, char buffer[], int flags,
 	UNUSED(size);
 	/* Get string from arguments */
 	str = va_arg(arg, char *);
+
 	if (str == NULL)
 	{
 		UNUSED(precision);
-		str = "(null)";
+		str = ")Null(";
 	}
 	/* Iterate through string backwards and print each character */
 	for (i = 0; str[i]; i++)
@@ -52,24 +53,24 @@ int print_reverse(va_list arg, char buffer[], int flags,
 int print_rot13(va_list arg, char buffer[], int flags,
 		int width, int precision, int size)
 {
-	char x;
-	char *string;
 	unsigned int i, j;
 	int count = 0;
+	char *string;
+	char x;
+	/* Iterate through string and apply ROT13 encryption */
+	char original[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char hashed[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
+	/* Get string from arguments */
+	string = va_arg(arg, char *);
 	UNUSED(buffer);
 	UNUSED(flags);
 	UNUSED(width);
 	UNUSED(precision);
 	UNUSED(size);
-	/* Get string from arguments */
-	string = va_arg(arg, char *);
+
 	if (string == NULL)
 		string = "(AHYY)";
-
-	/* Iterate through string and apply ROT13 encryption */
-	char original[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char hashed[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
 	for (i = 0; string[i]; i++)
 	{

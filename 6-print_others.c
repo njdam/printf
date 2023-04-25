@@ -16,7 +16,7 @@ int print_pointer(va_list arg, char buffer[],
 		int flags, int width, int precision, int size)
 {
 	char padding_char = ' ';
-	int buffer_index = BUFF_SIZE - 2, length = 2;
+	int buffer_index = BUFFER_SIZE - 2, length = 2;
 	unsigned long address_num;
 	char hex_map[] = "0123456789abcdef";
 	void *address = va_arg(arg, void *);
@@ -27,7 +27,7 @@ int print_pointer(va_list arg, char buffer[],
 	if (address == NULL)
 		return (write(1, "(nil)", 5));
 
-	buffer[BUFF_SIZE - 1] = '\0';
+	buffer[BUFFER_SIZE - 1] = '\0';
 	UNUSED(precision);
 
 	/* Convert the pointer value to hexadecimal */
@@ -40,10 +40,10 @@ int print_pointer(va_list arg, char buffer[],
 	}
 
 	/* Check for flags */
-	if ((flags & F_ZERO) && !(flags & F_MINUS))
+	if ((flags & ZERO) && !(flags & MINUS))
 		padding_char = '0';
 
-	if (flags & (F_PLUS | F_SPACE))
+	if (flags & (PLUS | SPACE))
 		length++;
 
 	/* Set index to point to the first character to be printed */
@@ -82,10 +82,10 @@ int print_non_printable(va_list arg, char buffer[],
 	/* Check each character and convert non-printables to hex codes */
 	while (str[i] != '\0')
 	{
-		if (is_printable(str[i]))
+		if (_isprintable(str[i]))
 			buffer[i + offset] = str[i];
 		else
-			offset += append_hex_code(str[i], buffer, i + offset);
+			offset += append_hexacode(str[i], buffer, i + offset);
 		i++;
 	}
 	buffer[i + offset] = '\0';
