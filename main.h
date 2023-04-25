@@ -34,7 +34,7 @@ typedef struct format
 fmt_func;
 
 /* Functions for making Printf like */
-int print_handler(const char *format, int *x, va_list, char buffer[],
+int print_handler(const char *format, int *x, va_list arg, char buffer[],
 		int flags, int width, int precision, int size);
 
 /**** Functions for UTILS ****/

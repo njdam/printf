@@ -38,7 +38,7 @@ int _printf(const char *format, ...)
 			size = check_size(format, &i);
 			i++;
 			/* Handle the format specifier and get the number of characters printed */
-			prints = print_handler(format + i, &i, other_args, buffer, flags,
+			prints = print_handler(format, &i, other_args, buffer, flags,
 					width, precision, size);
 			if (prints == -1)
 				return (-1);
