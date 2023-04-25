@@ -89,6 +89,7 @@ int print_char(va_list arg, char buffer[], int flags, int width,
 		int precision, int size);
 int print_percent(va_list arg, char buffer[], int flags, int width,
 		int precision, int size);
+int justify_string(char *str, int length, int width, int flags);
 
 /******* Qu.6: function to print address of where pointer point to *******/
 int print_pointer(va_list arg, char buffer[], int flags, int width,
