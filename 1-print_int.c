@@ -12,8 +12,8 @@
  *
  * Return: Number of characters printed
  */
-int print_int(va_list arg, char buffer[],
-		int flags, int width, int precision, int size)
+int print_int(va_list arg, char buffer[], int flags, int width,
+		int precision, int size)
 {
 	/* Start at second to last index to leave room for sign character */
 	int i = BUFFER_SIZE - 2;
@@ -22,7 +22,7 @@ int print_int(va_list arg, char buffer[],
 	unsigned long int unsigned_num;
 
 	/* Convert the number based on the size specifier */
-	num = convert_size_number(num, size);
+	num = conv_size_num(num, size);
 	if (num == 0)
 		buffer[i--] = '0';
 
@@ -45,5 +45,5 @@ int print_int(va_list arg, char buffer[],
 	i++;
 
 	/* Write the number string with format flags */
-	return (write_number(is_negative, i, buffer, flags, width, precision, size));
+	return (write_nsign(is_negative, i, buffer, flags, width, precision, size));
 }

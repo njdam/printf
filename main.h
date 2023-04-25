@@ -63,7 +63,7 @@ int print_uns(va_list arg, char buffer[], int flags, int width,
 		int precision, int size);
 int print_octal(va_list arg, char buffer[], int flags, int width,
 		int precision, int size);
-int print_haxadec(va_list arg, char buffer[], int flags, int width,
+int print_hexadec(va_list arg, char buffer[], int flags, int width,
 		int precision, int size);
 int print_upper_hexa(va_list arg, char buffer[], int flags, int width,
 		int precision, int size);
