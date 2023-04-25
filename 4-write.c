@@ -1,15 +1,16 @@
 #include "main.h"
 
 /**
- * write_char - a function to print characters;
- * @c: is a type of a character;
- * @buffer: an array of buffer to handle prints;
- * @flags: number of active flags;
- * @width: is the resulting width of format specification;
- * @precision: is the resulting precision of format specification;
- * @size: is size of format specifier;
+ * write_char - This function is for printing characters
  *
- * Return: value equal to the number of printed characters.
+ * @c: Is a type of a character
+ * @buffer: Is an array of buffer for handling printing
+ * @flags: The number of active flags
+ * @width: Is the resulting width of format specification;
+ * @precision: Is the resulting precision of format specification;
+ * @size: Is size of format specifier;
+ *
+ * Return: The value equal to the number of printed characters.
  */
 int write_char(char c, char buffer[], int flags, int width, int precision,
 		int size)
@@ -45,6 +46,7 @@ int write_char(char c, char buffer[], int flags, int width, int precision,
 
 /**
  * write_nsign - a function to write a signs for a number in a string;
+ *
  * @is_negative: is for checking a negative number;
  * @x: is index of a buffer where to start to write arguments to be printed;
  * @buffer: is an array of buffer to handle what to be printed;
@@ -135,7 +137,8 @@ int write_num(int x, char buffer[], int flags, int width, int precision,
 }
 
 /**
- * write_uns - is a function to write unsigned number;
+ * write_uns - This function writes unsigned number;
+ *
  * @is_negative: is for checking a negative number;
  * @x: is index of a buffer where to start to write arguments to be printed;
  * @buffer: is an array of buffer to handle what to be printed;
@@ -144,7 +147,7 @@ int write_num(int x, char buffer[], int flags, int width, int precision,
  * @precision: is the resulting precision of format specification;
  * @size: is size of format specifier;
  *
- * Return: number written characters.
+ * Return: The length of a printed string.
  */
 int write_uns(int is_negative, int x, char buffer[], int flags, int width,
 		int precision, int size)
@@ -185,17 +188,18 @@ int write_uns(int is_negative, int x, char buffer[], int flags, int width,
 }
 
 /**
- * write_pointer - a function to write address of where pointer point to;
- * @buffer: is an array of buffer to handle what to be printed;
- * @x: is index of a buffer where to start to write arguments to be printed;
- * @len: is the length of a number;
- * @width: is the resulting width of format specification;
- * @flags: number of active flags;
- * @pc:is padding character;
- * @ext_c:i s extra character;
- * @p_start: is index where to start for  padding;
+ * write_pointer - This function is for writing address stored in a pointer
  *
- * Return: number of characters written.
+ * @buffer: Is an array of buffer to handle what to be printed
+ * @x: Is index of a buffer where to start to write arguments to be printed
+ * @len: Is the length of a number
+ * @width: Is the resulting width of format specification
+ * @flags: Is a number of active flags
+ * @pc: Is padding character
+ * @ext_c: Is extra character
+ * @p_start: Is index where to start for  padding
+ *
+ * Return: The length of printed string
  */
 int write_pointer(char buffer[], int x, int len, int flags, int width, char pc,
 		char ext_c, int p_start)
