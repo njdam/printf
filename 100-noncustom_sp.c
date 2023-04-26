@@ -19,7 +19,7 @@ int check_flags(const char *format, int *x)
 		y = 0;
 		while (F_CH[y] != '\0')
 		{
-			if (format[y] == F_CH[y])
+			if (format[z] == F_CH[y])
 			{
 				flags |= F_AR[y];
 				break;
