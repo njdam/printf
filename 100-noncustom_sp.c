@@ -63,6 +63,7 @@ int check_width(const char *format, int *x, va_list arg)
 		}
 		else
 			break;
+		z++;
 	}
 
 	*x = z - 1;
@@ -80,10 +81,10 @@ int check_width(const char *format, int *x, va_list arg)
  */
 int check_precision(const char *format, int *x, va_list arg)
 {
-	int precision, z = *x + 1;
+	int precision = -1, z = *x + 1;
 
 	if (format[z] != '.')
-		return (-1);
+		return (precision);
 
 	precision = 0;
 	z += 1;

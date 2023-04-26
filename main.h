@@ -13,11 +13,11 @@
 #define LONG 2
 
 /* FLAGS TO BE USED */
-#define SPACE 1
-#define HASH 2
-#define MINUS 4
-#define PLUS 8
-#define ZERO 16
+#define SPACE 16
+#define HASH 8
+#define MINUS 1
+#define PLUS 2
+#define ZERO 4
 
 /**
  * struct format - structure operator;
