@@ -13,22 +13,21 @@ int check_flags(const char *format, int *x)
 	const int F_AR[] = {0, SPACE, HASH, PLUS, MINUS, ZERO};
 	const char F_CH[] = {'\0', ' ', '#', '+', '-', '0'};
 
-	z = *x + 1;
-	while (format[z] != '\0')
+	/* Loop through the flag characters to compare with each in the format string*/
+	for (z = *x + 1; format[z] != '\0'; z++)
 	{
-		y = 0;
-		while (F_CH[y] != '\0')
+		/* If the flag character is found, assign the corresponding flag */
+		for (y = 0; F_CH[y] != '\0'; y++)
 		{
 			if (format[z] == F_CH[y])
 			{
+				/* bitwise OR operator to add flag to flags variable*/
 				flags |= F_AR[y];
 				break;
 			}
-			y++;
 		}
 		if (F_CH[y] == 0)
 			break;
-		z++;
 	}
 	*x = z - 1;
 
