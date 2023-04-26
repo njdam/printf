@@ -13,7 +13,7 @@ int check_flags(const char *format, int *x)
 	const int F_AR[] = {0, SPACE, HASH, PLUS, MINUS, ZERO};
 	const char F_CH[] = {'\0', ' ', '#', '+', '-', '0'};
 
-	/* Loop through the flag characters to compare with each in the format string*/
+	/* Loop through flag characters to compare with each in the format string*/
 	for (z = *x + 1; format[z] != '\0'; z++)
 	{
 		/* If the flag character is found, assign the corresponding flag */
